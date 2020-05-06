@@ -6,8 +6,11 @@ const {promisify} = require('util')
 const readFile = promisify(fs.readFile)
 
 router.get('/user', async (ctx, next) => {
+	ctx.set('Access-Control-Allow-Origin', '*');
+	ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+	ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 	var data = fs.readFileSync(cacheDire)
-	ctx.body = JSON.parse(data);
+	ctx.body = data;
 	
 });
 
